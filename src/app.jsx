@@ -1,9 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-export default class App extends React.Component {
-  render() {
-    return (<div>
-      <h2>Welcome to React!</h2>
-    </div>);
-  }
-}
+import SideBar from './components/SideBar';
+import WebViews from './components/WebViews';
+
+export default () => {
+  console.log('app renader')
+  // temporarily hard coded
+  const calendars = [
+    'Personal',
+    'CODE',
+    'Phiture',
+  ];
+
+  const [activeCalendar, setActiveCalendar] = useState(0);
+
+  return (
+    <div>
+      <SideBar {...{ calendars, setActiveCalendar }} />
+      <WebViews {...{ calendars, activeCalendar }} />
+    </div>
+  );
+};
