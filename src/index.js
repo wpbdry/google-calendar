@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, Menu } from 'electron';
 import installExtension, { REACT_DEVELOPER_TOOLS } from 'electron-devtools-installer';
 import { enableLiveReload } from 'electron-compile';
 
@@ -59,3 +59,29 @@ app.on('activate', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
+
+// copied from https://pracucci.com/atom-electron-enable-copy-and-paste.html
+const template = [{
+  label: 'Application',
+  submenu: [
+    { label: 'About Calendar', selector: 'orderFrontStandardAboutPanel:' },
+    { type: 'separator' },
+    { label: 'Hide Calendar', accelerator: 'Command+H', click() { app.hide(); } },
+    { type: 'separator' },
+    { label: 'Quit', accelerator: 'Command+Q', click() { app.quit(); } },
+  ],
+}, {
+  label: 'Edit',
+  submenu: [
+    { label: 'Undo', accelerator: 'CmdOrCtrl+Z', selector: 'undo:' },
+    { label: 'Redo', accelerator: 'Shift+CmdOrCtrl+Z', selector: 'redo:' },
+    { type: 'separator' },
+    { label: 'Cut', accelerator: 'CmdOrCtrl+X', selector: 'cut:' },
+    { label: 'Copy', accelerator: 'CmdOrCtrl+C', selector: 'copy:' },
+    { label: 'Paste', accelerator: 'CmdOrCtrl+V', selector: 'paste:' },
+    { label: 'Select All', accelerator: 'CmdOrCtrl+A', selector: 'selectAll:' },
+  ],
+},
+];
+
+Menu.setApplicationMenu(Menu.buildFromTemplate(template));
