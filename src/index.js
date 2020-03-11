@@ -81,6 +81,16 @@ const template = [{
     { label: 'Paste', accelerator: 'CmdOrCtrl+V', selector: 'paste:' },
     { label: 'Select All', accelerator: 'CmdOrCtrl+A', selector: 'selectAll:' },
   ],
+}, {
+  label: 'View',
+  submenu: [
+    {
+      label: 'Reload Current Calendar',
+      accelerator: 'CmdOrCtrl+R',
+      click: () => mainWindow.webContents.executeJavaScript('document.querySelector(\'.active-webview\').reload()'),
+    },
+    { label: 'Reload All Calendars', accelerator: 'Alt+CmdOrCtrl+R', click: () => mainWindow.reload() },
+  ],
 },
 ];
 

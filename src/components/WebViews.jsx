@@ -15,6 +15,7 @@ export default function WebViews(props) {
         width: '100%',
         height: 'calc(100vh - 68px)', // 68 is the width of the sidebar and should be a variable
       }}
+      className={props.activeCalendar === i ? 'active-webview' : ''}
     />
   ));
 }
